@@ -19,7 +19,7 @@ verdaccio 的权限插件。利用分组+用户建立简单的权限体系。
 ```yarml
 
 auth:
-   verdacciogroup:
+   simplegroup:
       company: Jack Lucy
 
 packages:
@@ -38,7 +38,7 @@ packages:
 ```yarml
 
 auth:
-   verdacciogroup:
+   simplegroup:
       companyPublish: Jack Lucy
       companyUnpublish: Jack
 
