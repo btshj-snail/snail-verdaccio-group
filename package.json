@@ -1,0 +1,28 @@
+{
+  "name": "@runningsnail/verdaccio-group",
+  "version": "1.0.0",
+  "description": "verdaccio plugin authority",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/btshj-snail/snail-verdaccio-group.git"
+  },
+  "keywords": [
+    "verdaccio",
+    "plugin",
+    "authority"
+  ],
+  "author": "snail",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/btshj-snail/snail-verdaccio-group/issues"
+  },
+  "homepage": "https://github.com/btshj-snail/snail-verdaccio-group#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "http-errors": "^1.7.3"
+  }
+}
