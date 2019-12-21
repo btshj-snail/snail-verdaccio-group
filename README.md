@@ -2,6 +2,14 @@
 
 verdaccio 的权限插件。利用分组+用户建立简单的权限体系。
 
+## 安装
+
+```shell
+
+    npm install verdaccio-simplegroup -g
+
+```
+
 ## 使用方式
 
 ### 默认分组名

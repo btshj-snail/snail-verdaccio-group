@@ -8,24 +8,25 @@ class DynamicGroupPlugin {
   }
 
   allow_action(action) {
+    const that = this;
     return function(user, pkg, callback) {
       const { name: userName, groups: userGroups } = user;
-
       // Split pkgName
       const pkgName = pkg.name;
       const isOrgPackage = pkgName.startsWith('@');
       const orgEnd = pkgName.indexOf('/');
 
       if (isOrgPackage && orgEnd > 0) {
+        const orgName = pkgName.slice(1, orgEnd);
         //设置默认的$group 则表示使用和机构名相同的分组名作为权限分组
-        if (pkg[action].includes('$group') && this.configGroup[orgEnd] && this.configGroup[orgEnd].includes(userName)) {
+        if (pkg[action].includes('$group') && that.configGroup[orgName] && that.configGroup[orgName].includes(userName)) {
           return callback(null, true);
         }
 
         for (let i = 0, l = pkg[action].length; i < l; i++) {
           const authGroup = pkg[action][i];
-          if (this.configGroup.hasOwnProperty(authGroup)) {
-            const userList = this.configGroup[authGroup] || [];
+          if (that.configGroup.hasOwnProperty(authGroup)) {
+            const userList = that.configGroup[authGroup] || [];
             if (userList.includes(userName)) {
               return callback(null, true);
               break;

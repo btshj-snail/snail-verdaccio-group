@@ -1,6 +1,6 @@
 {
-  "name": "@runningsnail/verdaccio-group",
-  "version": "1.0.0",
+  "name": "verdaccio-simplegroup",
+  "version": "1.0.2",
   "description": "verdaccio plugin authority",
   "main": "index.js",
   "scripts": {
