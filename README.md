@@ -1,8 +1,8 @@
 # snail-verdaccio-group
 
-verdaccio 的权限插件。利用分组+用户建立简单的权限体系。
+Permission plugin for verdaccio. Use groups + users to establish a simple authority system.
 
-## 安装
+## Installation
 
 ```shell
 
@@ -10,11 +10,11 @@ verdaccio 的权限插件。利用分组+用户建立简单的权限体系。
 
 ```
 
-## 使用方式
+## How to use
 
-### 默认分组名
+### Default group name
 
-这是一种极简单的一种权限设置。利用`npm`包的`scope`名称，作为分组名称。
+This is a very simple permission setting. Use npm scopename of the package as the group name.
 
 ```yarml
 
@@ -29,18 +29,19 @@ packages:
        unpublish: $group
 ```
 
-以上的配置，则表示`Jack`和`Lucy`属于`company`分组，而`scope`为`company`的包的`publish`和`unpublish`权限是使用`$group`.因此`company`分组拥有`publish`和`unpublish`权限。
+The above configuration means that the Jacks and Lucy belongs to the `company` group, and the permission for scope of `@company` packages is use.
 
-### 指定分组名
+### Specify group name
 
-可以自定义分组名，并且在`publish`、`unpublish`、`access`中使用
+You can customize the group name, and grant rights for  `publish`, `unpublish`, `access` using:
 
 ```yarml
 
 auth:
    simplegroup:
-      companyPublish: Jack Lucy
-      companyUnpublish: Jack
+      group: 
+         companyPublish: Jack Lucy
+         companyUnpublish: Jack
 
 packages:
    '@company/*':
@@ -49,4 +50,5 @@ packages:
        unpublish: companyUnpublish
 ```
 
-以上配置，则表示分组 `companyPublish` 拥有`@company/*`包的发布权限，分组 `companyUnpublish` 拥有`@company/*`包的撤销发布权限。
+The above configuration means that the group `companyPublish` has publishing rights for scope `@company/*`, and only `companyUnpublish` group has right to unpublish packages in `@company/*` scope.
+

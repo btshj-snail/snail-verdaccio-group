@@ -18,7 +18,7 @@ class DynamicGroupPlugin {
 
       if (isOrgPackage && orgEnd > 0) {
         const orgName = pkgName.slice(1, orgEnd);
-        //设置默认的$group 则表示使用和机构名相同的分组名作为权限分组
+
         if (pkg[action].includes('$group') && that.configGroup[orgName] && that.configGroup[orgName].includes(userName)) {
           return callback(null, true);
         }
@@ -29,7 +29,6 @@ class DynamicGroupPlugin {
             const userList = that.configGroup[authGroup] || [];
             if (userList.includes(userName)) {
               return callback(null, true);
-              break;
             }
           }
         }
@@ -42,9 +41,9 @@ class DynamicGroupPlugin {
       }
 
       if (userName) {
-        callback(createError(403, `user ${userName} is not allowed to ${action} package ${pkg.name}`));
+        callback(createError(403, `user ${userName} is not allowed to ${action} package ${pkg.name}`), false);
       } else {
-        callback(createError(401, `authorization required to ${action} package ${pkg.name}`));
+        callback(createError(401, `authorization required to ${action} package ${pkg.name}`), false);
       }
     };
   }
@@ -62,7 +61,7 @@ class DynamicGroupPlugin {
     const hasSupport = isDefined ? pkg[action] : false;
 
     if (hasSupport === false) {
-      return callback(null, undefined);
+      return callback(null, false);
     }
 
     return this.allow_action(action)(user, pkg, callback);
